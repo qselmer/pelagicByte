@@ -1,6 +1,6 @@
-# Fish Byte — Marine Creative Coding
+# pelagicByte - Marine Creative Coding
 
-**Fish Byte** is a small collection of marine-themed creative coding experiments and web animations built with HTML, CSS, and JavaScript.
+**pelagicByte** is a small collection of marine-themed creative coding experiments and web animations built with HTML, CSS, and JavaScript.
 
 This repository is a personal creative laboratory rather than a scientific research output, software package, or production application. It is intentionally excluded from the main academic GitHub profile and can instead be surfaced on the academic website under **Miscellaneous → Creative coding**.
 
