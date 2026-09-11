@@ -3,7 +3,7 @@ schema_version: 2
 repository:
   owner: qselmer
   name: fish-byte
-  title: Fish Byte — Marine Creative Coding
+  title: pelagicByte - Marine Creative Coding
   type: type-app
   status: active
   stage: experimental
