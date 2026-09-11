@@ -10,7 +10,8 @@ This repository is a personal creative laboratory rather than a scientific resea
 |---|---|---|
 | Flying Fishes | Canvas-based flying-fish and water-surface animation. | [`animations/01-flying-fishes/`](animations/01-flying-fishes/) |
 | Ocean Shark | CSS/JavaScript shark scene with animated bubbles. | [`animations/02-ocean-shark/`](animations/02-ocean-shark/) |
-| El Secreto del Gran Azul | Illustrated marine story with an animated sea turtle and ocean scene. | [`animations/03-great-blue-story/`](animations/03-great-blue-story/) |
+| Swimming Turtle | Animated sea-turtle scene built primarily with CSS. | [`animations/03-swimming-turtle/`](animations/03-swimming-turtle/) |
+| Marine Dynamic | Interactive marine animation with a dynamic surface and pelagic-fish model elements. | [`animations/04-marine-dynamic/`](animations/04-marine-dynamic/) |
 
 Open [`index.html`](index.html) for the repository gallery. For local browsing, you can also run:
 
@@ -27,7 +28,8 @@ and visit `http://localhost:8000/`.
 ├── animations/
 │   ├── 01-flying-fishes/
 │   ├── 02-ocean-shark/
-│   └── 03-great-blue-story/
+│   ├── 03-swimming-turtle/
+│   └── 04-marine-dynamic/
 ├── assets/
 │   └── css/
 │       └── gallery.css
@@ -42,7 +44,7 @@ and visit `http://localhost:8000/`.
 └── README.md
 ```
 
-Each animation remains self-contained with its own `index.html`, `styles.css`, and `script.js`.
+Each animation is self-contained with its own `index.html`, `styles.css`, and `script.js`.
 
 ## Portfolio integration
 

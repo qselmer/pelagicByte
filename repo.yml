@@ -2,7 +2,7 @@ schema_version: 2
 
 repository:
   owner: qselmer
-  name: fish-byte
+  name: pelagicByte
   title: pelagicByte - Marine Creative Coding
   type: type-app
   status: active
@@ -27,4 +27,4 @@ integration:
     section: miscellaneous
     label: Creative coding
 
-  repository_url: https://github.com/qselmer/fish-byte
+  repository_url: https://github.com/qselmer/pelagicByte
