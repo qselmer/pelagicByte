@@ -1,0 +1,57 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  background: #ffffff;
+  overflow: hidden;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* ----------------------------------
+   MARINE IDENTITY HERO OBJECT
+---------------------------------- */
+
+.container {
+  position: relative;
+  width: min(78vmin, 560px);
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 50%;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+}
+
+.container canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* subtle scientific frame */
+.container::before,
+.container::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.container::before {
+  inset: 0%;
+  border: 0px solid rgba(10, 48, 58, 0.16);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .container::after {
+    display: none;
+  }
+}
