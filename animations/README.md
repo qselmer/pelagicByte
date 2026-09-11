@@ -4,6 +4,7 @@ Self-contained marine creative-coding pieces. Each directory contains its own `i
 
 - `01-flying-fishes/` - flying fish and water-surface animation.
 - `02-ocean-shark/` - animated shark and bubbles.
-- `03-great-blue-story/` - *El Secreto del Gran Azul*, with an animated sea turtle.
+- `03-swimming-turtle/` - animated sea-turtle scene.
+- `04-marine-dynamic/` - interactive marine animation with pelagic-fish model elements.
 
 Keep new experiments in numbered, kebab-case directories and preserve source-specific attribution comments where applicable.
