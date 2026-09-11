@@ -51,9 +51,9 @@ if (ROOT / "repo.yml").is_file():
         errors.append("repo.yml: website section must be miscellaneous")
 
 if errors:
-    print("Fish Byte validation: FAIL")
+    print("pelagicByte validation: FAIL")
     for error in errors:
         print(f"- {error}")
     sys.exit(1)
 
-print("Fish Byte validation: PASS")
+print("pelagicByte validation: PASS")
