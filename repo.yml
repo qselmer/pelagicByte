@@ -1,0 +1,30 @@
+schema_version: 2
+
+repository:
+  owner: qselmer
+  name: fish-byte
+  title: Fish Byte — Marine Creative Coding
+  type: type-app
+  status: active
+  stage: experimental
+  visibility: public
+
+  description: >
+    Marine-themed creative coding experiments and web animations built with HTML, CSS, and JavaScript.
+
+  topics:
+    - type-app
+    - creative-coding
+    - marine-animation
+    - javascript
+
+integration:
+  profile:
+    include: false
+
+  website:
+    include: true
+    section: miscellaneous
+    label: Creative coding
+
+  repository_url: https://github.com/qselmer/fish-byte
