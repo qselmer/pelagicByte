@@ -6,16 +6,8 @@ import sys
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
-ANIMATIONS = [
-    "animations/01-flying-fishes",
-    "animations/02-ocean-shark",
-    "animations/03-swimming-turtle",
-    "animations/04-marine-dynamic",
-]
-JQUERY_REQUIRED = {
-    "animations/01-flying-fishes",
-    "animations/04-marine-dynamic",
-}
+ANIMATIONS_ROOT = ROOT / "animations"
+NAME_PATTERN = re.compile(r"^\d{2,}-[a-z0-9]+(?:-[a-z0-9]+)*$")
 
 required_root = [
     "README.md",
@@ -31,43 +23,60 @@ for rel in required_root:
     if not (ROOT / rel).is_file():
         errors.append(f"missing required file: {rel}")
 
-animations_root = ROOT / "animations"
-if animations_root.is_dir():
-    actual_dirs = sorted(
-        f"animations/{path.name}"
-        for path in animations_root.iterdir()
-        if path.is_dir()
+# Discover every animation dynamically. There is intentionally no fixed inventory.
+animation_dirs = []
+if not ANIMATIONS_ROOT.is_dir():
+    errors.append("missing animations directory")
+else:
+    animation_dirs = sorted(
+        (path for path in ANIMATIONS_ROOT.iterdir() if path.is_dir()),
+        key=lambda path: path.name,
     )
-    if actual_dirs != ANIMATIONS:
+    if not animation_dirs:
+        errors.append("animations directory must contain at least one animation")
+
+prefixes = {}
+for animation_dir in animation_dirs:
+    folder = f"animations/{animation_dir.name}"
+
+    if not NAME_PATTERN.fullmatch(animation_dir.name):
         errors.append(
-            "animation directories must match the curated gallery: "
-            + ", ".join(ANIMATIONS)
+            f"animation directory is not numbered kebab-case: {folder}; "
+            "expected NN-name or NNN-name"
         )
-
-name_pattern = re.compile(r"^\d{2}-[a-z0-9]+(?:-[a-z0-9]+)*$")
-for folder in ANIMATIONS:
-    animation_dir = ROOT / folder
-    if not animation_dir.is_dir():
-        errors.append(f"missing animation directory: {folder}")
-        continue
-
-    if not name_pattern.fullmatch(animation_dir.name):
-        errors.append(f"animation directory is not numbered kebab-case: {folder}")
-
-    for filename in ("index.html", "styles.css", "script.js"):
-        rel = f"{folder}/{filename}"
-        if not (ROOT / rel).is_file():
-            errors.append(f"missing animation file: {rel}")
+    else:
+        prefix = int(animation_dir.name.split("-", 1)[0])
+        if prefix in prefixes:
+            errors.append(
+                f"duplicate animation number {prefix}: {prefixes[prefix]} and {folder}"
+            )
+        prefixes[prefix] = folder
 
     index_path = animation_dir / "index.html"
-    if index_path.is_file():
-        index_text = index_path.read_text(encoding="utf-8")
-        if 'href="styles.css"' not in index_text:
-            errors.append(f"{folder}/index.html must load styles.css")
-        if 'src="script.js"' not in index_text:
-            errors.append(f"{folder}/index.html must load script.js")
-        if folder in JQUERY_REQUIRED and "jquery" not in index_text.lower():
-            errors.append(f"{folder}/index.html must load jQuery")
+    if not index_path.is_file():
+        errors.append(f"missing animation entry point: {folder}/index.html")
+        continue
+
+    index_text = index_path.read_text(encoding="utf-8")
+    index_lower = index_text.lower()
+
+    # Each animation must be directly runnable as a standalone HTML page.
+    if "<html" not in index_lower or "<body" not in index_lower:
+        errors.append(f"{folder}/index.html must be standalone HTML with <html> and <body>")
+
+    styles_path = animation_dir / "styles.css"
+    if styles_path.is_file() and 'href="styles.css"' not in index_text and "href='styles.css'" not in index_text:
+        errors.append(f"{folder}/index.html must load styles.css when that file exists")
+
+    script_path = animation_dir / "script.js"
+    if script_path.is_file():
+        if 'src="script.js"' not in index_text and "src='script.js'" not in index_text:
+            errors.append(f"{folder}/index.html must load script.js when that file exists")
+
+        script_text = script_path.read_text(encoding="utf-8")
+        uses_jquery = "$(" in script_text or "jquery(" in script_text.lower()
+        if uses_jquery and "jquery" not in index_lower:
+            errors.append(f"{folder}/index.html must load jQuery because script.js uses it")
 
 repo_yml = ROOT / "repo.yml"
 if repo_yml.is_file():
@@ -121,13 +130,18 @@ if repo_yml.is_file():
     if integration.get("repository_url") != expected_url:
         errors.append(f"repo.yml: integration.repository_url must be {expected_url}")
 
+# The root gallery is curated: it does not need a card for every animation.
+# It must, however, never contain links to animation directories that do not exist.
 root_index = ROOT / "index.html"
 if root_index.is_file():
     root_index_text = root_index.read_text(encoding="utf-8")
-    for folder in ANIMATIONS:
-        href = f'{folder}/'
-        if href not in root_index_text:
-            errors.append(f"index.html must link to {href}")
+    linked_animation_dirs = re.findall(
+        r'href=["\'](animations/[^"\']+)/?["\']', root_index_text
+    )
+    for linked in linked_animation_dirs:
+        target = ROOT / linked.rstrip("/")
+        if not target.is_dir():
+            errors.append(f"index.html links to missing animation directory: {linked}")
 
 for rel in ("README.md", "index.html", "repo.yml", "animations/README.md"):
     path = ROOT / rel
@@ -140,4 +154,4 @@ if errors:
         print(f"- {error}")
     sys.exit(1)
 
-print("pelagicByte validation: PASS")
+print(f"pelagicByte validation: PASS ({len(animation_dirs)} animations validated)")
