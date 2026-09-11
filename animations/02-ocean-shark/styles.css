@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   border: 0;
@@ -15,7 +16,10 @@ html, body {
   height: 3vmin;
   border-radius: 70%;
   background: rgba(255, 255, 255, 0.4);
-  box-shadow: -3vmin -2vmin 0 -0.5vmin rgba(255, 255, 255, 0.3), 3vmin -3vmin 0 -0.25vmin rgba(255, 255, 255, 0.5), -4vmin 2vmin 0 -0.5vmin rgba(255, 255, 255, 0.3), 4vmin 3vmin 0 -0.25vmin rgba(255, 255, 255, 0.5);
+  box-shadow: -3vmin -2vmin 0 -0.5vmin rgba(255, 255, 255, 0.3),
+    3vmin -3vmin 0 -0.25vmin rgba(255, 255, 255, 0.5),
+    -4vmin 2vmin 0 -0.5vmin rgba(255, 255, 255, 0.3),
+    4vmin 3vmin 0 -0.25vmin rgba(255, 255, 255, 0.5);
   animation: float-bubbles 5s infinite linear;
 }
 
@@ -61,7 +65,9 @@ html, body {
   right: 8vmin;
 }
 
-.aleta, .tail, .fin {
+.aleta,
+.tail,
+.fin {
   width: 12vmin;
   height: 12vmin;
   box-shadow: 4vmin -0.5vmin #666;
@@ -100,13 +106,23 @@ html, body {
 }
 
 @keyframes swim-shark {
-  from { left: -50vmin; }
-  to { left: 110vw; }
+  from {
+    left: -50vmin;
+  }
+  to {
+    left: 110vw;
+  }
 }
 
 @keyframes float-bubbles {
-  from { top: 90%; opacity: 1; }
-  to { top: 10%; opacity: 0; }
+  from {
+    top: 90%;
+    opacity: 1;
+  }
+  to {
+    top: 10%;
+    opacity: 0;
+  }
 }
 
 #donation-container {
@@ -134,9 +150,15 @@ html, body {
   text-align: center;
 }
 
-.coffee { background-color: #ffdd57; }
-.kofi { background-color: #29abe0; }
-.paypal { background-color: #0070ba; }
+.coffee {
+  background-color: #ffdd57;
+}
+.kofi {
+  background-color: #29abe0;
+}
+.paypal {
+  background-color: #0070ba;
+}
 
 .donation-btn:hover {
   filter: brightness(1.2);
