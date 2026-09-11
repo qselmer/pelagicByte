@@ -1,0 +1,632 @@
+:root {
+	--green1: #bbab31;
+	--green2: #978928;
+	--green3: #695415;
+	--brown1: #58331a;
+	--brown2: #542c12;
+	--brown3: #2b160f;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	background: linear-gradient(
+		to top,
+		rgba(0, 25, 45, 1) 0%,
+		rgba(14, 71, 117, 1) 35%,
+		rgba(26, 0, 174, 1) 70%,
+		rgba(62, 8, 20, 1) 100%
+	);
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100vw;
+	height: 100vh;
+}
+
+body *,
+*:before,
+*:after {
+	box-sizing: border-box;
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	box-sizing: inherit;
+	transition: opacity 0.5s ease 0s;
+}
+
+.water {
+	background: linear-gradient(
+		to top,
+		rgba(0, 25, 45, 1) 0%,
+		rgba(14, 71, 117, 1) 35%,
+		rgba(26, 126, 174, 1) 70%,
+		rgba(62, 168, 220, 1) 100%
+	);
+	height: 100vh;
+	width: 100vw;
+	overflow: hidden;
+	position: relative;
+}
+
+.water:before,
+body:after {
+	content: "";
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background: repeating-linear-gradient(
+		250deg,
+		#03a9f415 45%,
+		#03a9f420 97%,
+		#2196f330 50%,
+		#03a9f420 53%,
+		#03a9f415 55%
+	);
+	background-size: 1vmin;
+	animation: ocean 15s linear 0s infinite;
+	transition: opacity 0.5s ease 0s;
+	filter: blur(1px);
+}
+
+.water:before,
+body:hover:after {
+	opacity: 0;
+	transition: opacity 0.5s ease 0s;
+}
+
+body:hover .water:before {
+	opacity: 1;
+	transition: opacity 0.5s ease 0s;
+}
+
+body:hover .bubbles {
+	z-index: 0;
+}
+
+@keyframes ocean {
+	100% {
+		background-position: 0 100vmin;
+	}
+}
+
+.turtle {
+	width: 70vmin;
+	height: 60vmin;
+	animation: swim 5s ease-in-out 0s infinite;
+}
+
+@keyframes swim {
+	0% {
+		transform: translateY(0);
+	}
+	30% {
+		transform: translateY(-3vmin);
+	}
+	100% {
+		transform: translateY(0);
+	}
+}
+
+.turtle > div {
+	position: absolute;
+}
+
+.body {
+	width: 40vmin;
+	height: 33vmin;
+	border-radius: 50vmin;
+	top: 17vmin;
+	left: 15vmin;
+	border: 1.75vmin solid var(--brown3);
+	box-sizing: border-box;
+	clip-path: ellipse(50% 50% at 50% 50%);
+	transform: rotate(90deg);
+	background: 
+		conic-gradient(
+			at 0.5vmin 6.9324vmin,
+			transparent 270deg,
+			var(--brown3) 0deg
+		),
+		conic-gradient(
+			at calc(100% - 0.5vmin) 6.9324vmin,
+			var(--brown3) 90deg,
+			transparent 0deg
+		),
+		conic-gradient(
+			from -60deg at 50% 10.3944vmin,
+			var(--brown2) 120deg,
+			transparent 120deg
+		),
+		conic-gradient(
+			from -60deg at 50% 11.3944vmin,
+			var(--brown3) 120deg,
+			transparent 120deg
+		),
+		conic-gradient(
+			from 120deg at 50% 18.822vmin,
+			var(--brown2) 120deg,
+			transparent 120deg
+		),
+		conic-gradient(
+			from 120deg at 50% 17.822vmin,
+			var(--brown3) 120deg,
+			transparent 120deg
+		),
+		linear-gradient(
+			90deg,
+			var(--brown1) calc(50% - 0.5vmin),
+			var(--brown3) 0 calc(50% + 0.5vmin),
+			var(--brown1) 0
+		);
+	background-size: 13vmin;
+}
+
+.body:before,
+.body:after {
+	content: "";
+	width: 12vmin;
+	height: 2vmin;
+	background: var(--brown2);
+	border-radius: 100% 150% 0 0;
+	top: -0.75vmin;
+	left: 13.35vmin;
+	transform: rotate(1deg);
+}
+.body:after {
+	top: 28.05vmin;
+	left: 13.35vmin;
+	transform: rotate(-2deg);
+	border-radius: 0 0 150% 100%;
+}
+
+.body span {
+	background: 
+		radial-gradient(
+			ellipse 105vmin 56vmin at 50% -40%,
+			transparent 18%,
+			#30180c80 18.5%
+		),
+		linear-gradient(
+			90deg,
+			transparent 12.35vmin,
+			#301a11 12.5vmin,
+			#30180c 13.25vmin,
+			transparent 13.25vmin
+		),
+		linear-gradient(
+			90deg,
+			transparent 25.35vmin,
+			#30180c 25.5vmin,
+			#2b160f 26.25vmin,
+			transparent 26.25vmin
+		);
+	width: 100%;
+	height: 45%;
+	z-index: 1;
+	left: 0vmin;
+	top: 22vmin;
+}
+
+.body-tail {
+	background: var(--brown1);
+	width: 7vmin;
+	height: 7vmin;
+	bottom: 6vmin;
+	transform: rotate(45deg);
+	left: calc(50% - 3.25vmin);
+	border-radius: 500% 50% 0 50%;
+}
+
+.body-tail:before,
+.body-tail:after {
+	content: "";
+	width: 1vmin;
+	height: 6vmin;
+	background: var(--brown3);
+	position: absolute;
+	top: 1vmin;
+	left: 6.75vmin;
+	transform: rotate(12deg);
+	border-radius: 1vmin;
+}
+
+.body-tail:after {
+	top: 4.25vmin;
+	left: 3.65vmin;
+	transform: rotate(-102deg);
+}
+
+.head {
+	background: 
+		radial-gradient(circle at 53% 44%, var(--green3) 15%,	transparent 16%),
+		radial-gradient(circle at 25% 50%, var(--green3) 9%, transparent 10%),
+		radial-gradient(circle at 32% 26%, var(--green3) 8%, transparent 9%),
+		radial-gradient(circle at 50% 20%, var(--green3) 5%, transparent 6%),
+		radial-gradient(circle at 38% 61%, var(--green3) 5%, transparent 6%),
+		radial-gradient(circle at 16% 35%, var(--green3) 4%, transparent 5%),
+		radial-gradient(ellipse at 20% 70%, var(--green1) 63%, var(--green2) 64%),
+		var(--green1);
+	width: 12.5vmin;
+	height: 12.5vmin;
+	border-radius: 100% 100% 50%;
+	transform: rotate(-135deg);
+	left: 29vmin;
+	top: 3vmin;
+}
+
+.head:before,
+.head:after {
+	content: "";
+	background: #404040;
+	width: 0.6vmin;
+	height: 0.35vmin;
+	bottom: 0.95vmin;
+	left: 10.75vmin;
+	border-radius: 100% 80%;
+	transform: rotate(20deg);
+}
+.head:after {
+	transform: rotate(66deg);
+	left: 11.1vmin;
+	bottom: 1.4vmin;
+}
+
+.eyes {
+	width: 10vmin;
+	height: 2vmin;
+	transform: rotate(-45deg);
+	top: 8.5vmin;
+	left: 4.5vmin;
+}
+
+.eyes:before,
+.eyes:after {
+	content: "";
+	background: #101010;
+	width: 1vmin;
+	height: 1vmin;
+	border-radius: 0 50% 0 50%;
+	border: 0.5vmin solid var(--green1);
+}
+
+.eyes:after {
+	right: 0;
+	transform: rotate(90deg);
+	border-color: var(--green2);
+}
+
+.leg1,
+.leg2 {
+	background: radial-gradient(
+			ellipse 20vmin 12vmin at 40% 60%,
+			var(--green1) 42%,
+			var(--green2) 43%
+		),
+		var(--green1);
+	width: 9vmin;
+	height: 11vmin;
+	left: 15.5vmin;
+	top: 15vmin;
+	transform: rotate(40deg);
+	border-radius: 25% 0 0 0;
+	animation: legone 5s 0s infinite;
+}
+
+.leg1:before,
+.leg2:before {
+	content: "";
+	background: radial-gradient(
+			circle at 41% 51%,
+			var(--green3) 15%,
+			transparent 17%
+		),
+		radial-gradient(circle at 78% 8%, var(--green3) 9%, transparent 10%),
+		radial-gradient(circle at 52% 20%, var(--green3) 6%, transparent 7%),
+		radial-gradient(circle at 33% 71%, var(--green3) 7%, transparent 8%),
+		radial-gradient(circle at 8% 38%, var(--green3) 11%, transparent 13%),
+		radial-gradient(circle at 43% 35%, var(--green3) 7%, transparent 8%),
+		radial-gradient(circle at 25% 23%, var(--green3) 6%, transparent 7%),
+		radial-gradient(circle at 11% 79%, var(--green3) 4%, transparent 5%),
+		radial-gradient(circle at 0% 63%, var(--green3) 11%, transparent 13%),
+		var(--green1);
+	width: 6vmin;
+	height: 13vmin;
+	border-radius: 80% 10%;
+	transform: rotate(-16deg);
+	left: -3vmin;
+	top: 0.75vmin;
+	border-left: 1vmin solid var(--green2);
+	border-top: 1.55vmin solid var(--green2);
+	border-right: 0;
+	border-bottom: 0;
+}
+
+.leg2 {
+	transform: rotate(-40deg) rotateY(180deg);
+	left: 46vmin;
+	animation: legtwo 5s 0s infinite;
+}
+
+@keyframes legone {
+	50% {
+		transform: rotate(40deg) rotate(-40deg) translateX(5vmin) translateY(4vmin);
+	}
+}
+
+@keyframes legtwo {
+	50% {
+		transform: rotate(-40deg) rotateY(180deg) rotate(-40deg) translateX(5vmin)
+			translateY(4vmin);
+	}
+}
+
+.leg3,
+.leg4 {
+	background: radial-gradient(
+			circle at 47% 23%,
+			var(--green3) 4%,
+			transparent 5%
+		),
+		radial-gradient(circle at 40% 41%, var(--green3) 11%, transparent 12%),
+		radial-gradient(circle at 58% 52%, var(--green3) 4%, transparent 6%),
+		radial-gradient(circle at 24% 60%, var(--green3) 13%, transparent 14%),
+		radial-gradient(circle at 15% 27%, var(--green3) 7%, transparent 8%),
+		var(--green1);
+	width: 5vmin;
+	height: 13vmin;
+	bottom: 2vmin;
+	left: 21.25vmin;
+	border-radius: 45% 30% 20% 200%;
+	transform: rotate(-3deg);
+	animation: legthree 5s 0s infinite;
+}
+
+.leg3:before,
+.leg4:before {
+	content: "";
+	width: 10vmin;
+	height: 16vmin;
+	bottom: -1.25vmin;
+	left: -0.25vmin;
+	border-radius: 100%;
+	border: 1vmin solid transparent;
+	border-left: 1.1vmin solid var(--green2);
+	transform: rotate(-8deg);
+	border-bottom-width: 0.5vmin;
+}
+
+.leg3:after,
+.leg4:after {
+	content: "";
+	width: 2vmin;
+	height: 3vmin;
+	border-radius: 100%;
+	border: 2.5vmin solid #00800000;
+	border-left-color: var(--green1);
+	top: 4vmin;
+	left: 2.75vmin;
+	transform: rotate(43deg);
+}
+
+.leg4 {
+	transform: rotate(3deg) rotateY(180deg);
+	left: 44.5vmin;
+	animation: legfour 5s 0s infinite;
+}
+
+@keyframes legthree {
+	50% {
+		transform: rotate(-5deg);
+	}
+}
+
+@keyframes legfour {
+	0% {
+		transform: rotate(5deg) rotateY(180deg);
+	}
+	50% {
+		transform: rotate(3deg) rotateY(180deg);
+	}
+	100% {
+		transform: rotate(5deg) rotateY(180deg);
+	}
+}
+
+.tail {
+	background: radial-gradient(
+			circle at 30% 22%,
+			var(--green3) 4%,
+			transparent 5%
+		),
+		radial-gradient(circle at 38% 31%, var(--green3) 7%, transparent 8%),
+		radial-gradient(circle at 40% 54%, var(--green3) 4%, transparent 5%),
+		radial-gradient(circle at 30% 44%, var(--green3) 10%, transparent 11%),
+		linear-gradient(84deg, var(--green2) 2vmin, var(--green1) 2.25vmin);
+	width: 4vmin;
+	height: 8vmin;
+	left: 33vmin;
+	bottom: -2vmin;
+	clip-path: polygon(50% 100%, 10% 0, 95% 0);
+	border-radius: 0 0 80% 0;
+	transform-origin: center top;
+	transform: rotate(5deg);
+	animation: tail-move 5s 0s infinite;
+}
+
+@keyframes tail-move {
+	50% {
+		transform: rotate(-5deg);
+	}
+}
+
+/*** BUBBLES ***/
+
+.bubbles {
+	/*background: #ff00002e;*/
+	width: 25vmin;
+	height: 80vmin;
+	bottom: 0;
+	margin-left: -25vmin;
+	z-index: 1;
+}
+
+.bubble {
+	height: 4vmin;
+	position: absolute;
+	width: 4vmin;
+	top: 30vmin;
+	left: 5vmin;
+	animation: bubble-down 5s linear 1.5s infinite,
+		bubble-side 3s ease-in-out infinite alternate;
+	opacity: 0;
+}
+.bubble:before {
+	content: "";
+	border-radius: 50%;
+	box-shadow: inset 0 -0.05vmin 0.5vmin rgb(255 255 255);
+	height: 50%;
+	position: absolute;
+	width: 50%;
+	top: 25%;
+	left: 25%;
+}
+
+@keyframes bubble-down {
+	0% {
+		top: 30vmin;
+	}
+	20% {
+		opacity: 0.5;
+	}
+	70% {
+		opacity: 0.5;
+	}
+	100% {
+		top: 80vmin;
+		opacity: 0;
+	}
+}
+@keyframes bubble-side {
+	0% {
+		margin-left: 0px;
+	}
+	100% {
+		margin-left: 10px;
+	}
+}
+
+.bubble.b2 {
+	left: 8vmin;
+	animation-delay: 1.2s;
+	animation-duration: 5s, 2s;
+	width: 1.75vmin;
+	height: 1.75vmin;
+}
+
+.bubble.b3 {
+	left: 9vmin;
+	animation-delay: 1.5s;
+	animation-duration: 5s, 3s;
+	width: 2.5vmin;
+	height: 2.5vmin;
+}
+
+.bubble.b4 {
+	left: 7vmin;
+	animation-delay: 1.75s;
+	animation-duration: 5s, 1.5s;
+	width: 1.5vmin;
+	height: 1.5vmin;
+}
+
+.bubble.b5 {
+	left: 4vmin;
+	animation-delay: 2s;
+	animation-duration: 5s, 4s;
+	width: 3vmin;
+	height: 3vmin;
+}
+
+.bubble.b6 {
+	left: 9vmin;
+	animation-delay: 2.05s;
+	animation-duration: 5s, 3.5s;
+	width: 2.25vmin;
+	height: 2.25vmin;
+}
+
+.bubble.b7 {
+	left: 8vmin;
+	animation-delay: 2.5s;
+	animation-duration: 5s, 1s;
+	width: 1.5vmin;
+	height: 1.5vmin;
+}
+.bubble.b8 {
+	left: 6.5vmin;
+	animation-delay: 2.15s;
+	animation-duration: 5s, 2.5s;
+	width: 1.35vmin;
+	height: 1.35vmin;
+}
+.bubble.b9 {
+	left: 5.5vmin;
+	animation-delay: 2.85s;
+	animation-duration: 5s, 2.25s;
+	width: 1.25vmin;
+	height: 1.25vmin;
+}
+.bubble.b10 {
+	left: 6.5vmin;
+	animation-delay: 3s;
+	animation-duration: 5s, 1.75s;
+	width: 1vmin;
+	height: 1vmin;
+}
+
+.bubbles.mirror {
+	margin-left: 25vmin;
+	transform: rotateY(180deg);
+	bottom: 2vmin;
+}
+
+.trail {
+	width: 20vmin;
+	height: 30vmin;
+	position: absolute;
+	bottom: 0;
+}
+
+.trail:before,
+.trail:after {
+	content: "";
+	height: 14vmin;
+	width: 0.5vmin;
+	position: absolute;
+	left: 7vmin;
+	transform: rotate(1deg);
+	filter: blur(7px);
+	border-radius: 100%;
+	top: -14vmin;
+	background: #ffffff40;
+	animation: trail-move 5s 0s infinite;
+}
+.trail:after {
+	position: absolute;
+	left: 13vmin;
+	transform: rotate(-1deg);
+}
+
+@keyframes trail-move {
+	0% {
+		top: -15vmin;
+	}
+	100% {
+		top: 20vmin;
+		width: 0;
+		opacity: 0;
+		transform: rotate(0deg);
+	}
+}
